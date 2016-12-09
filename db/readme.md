@@ -7,7 +7,7 @@
  mongoose.disconnect(cb);
 ```
 
-> model
+> model (./model/base.js)
 
 ```
 base.js 文件封装基本操作 增删改查
