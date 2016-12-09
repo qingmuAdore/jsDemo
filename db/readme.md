@@ -10,7 +10,7 @@
 > [model] (./model/base.js)
 
 ```
-base.js 文件封装基本操作 增删改查
+base.js  文件封装基本操作 增删改查
 
 其中(可重写)
 getQuery(): 传入查找条件
