@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var url = 'mongodb://localhost/dbTest';
 
+if (global.Promise) {
+    mongoose.Promise = global.Promise;
+}
+
 exports.openDB = function(callback) {
     callback = callback || function() {};
 

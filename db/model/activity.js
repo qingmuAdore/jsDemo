@@ -16,7 +16,7 @@ var ActivitySchema = new BaseSchema({
 var activity = ActivitySchema.statics;
 
 activity.relative = function() {
-    return 'matterIds awardId';
+    return 'awardId';
 }
 
 module.exports = mongoose.model('Activity', ActivitySchema, 'activity');
