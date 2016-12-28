@@ -12,7 +12,6 @@ var doc = {
         x: 123,
         y: 12
     }
-
 };
 
 async.waterfall([

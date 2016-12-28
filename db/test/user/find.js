@@ -8,6 +8,7 @@ var doc = {
     work: 'softEngineer'
 };
 
+
 async.waterfall([
     function(cb) {
         db.openDB(cb);

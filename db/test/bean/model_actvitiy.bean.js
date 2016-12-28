@@ -25,7 +25,6 @@ var activityDoc = {
 }
 
 
-
 async.waterfall([
     function(cb) {
         db.openDB(cb);
