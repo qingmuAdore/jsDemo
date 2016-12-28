@@ -1,6 +1,6 @@
 var async = require('async');
-var db = require('../lib/db.js');
-var user = require('../model/user.js');
+var db = require('../../lib/db.js');
+var user = require('../../model/user.js');
 
 var doc = {
     name: 'pauly',
