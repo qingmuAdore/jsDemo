@@ -19,6 +19,7 @@ async.waterfall([
         award.add(doc, cb);
     },
     function(arg, cb) {
+        console.log(arg);
         award.modify(doc.name, { wish: '生日快乐' }, cb);
     },
     function(arg, cb) {

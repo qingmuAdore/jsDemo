@@ -19,6 +19,7 @@ async.waterfall([
         award.add(doc, cb);
     },
     function(arg, cb) {
+        console.log(arg);
         award.findOne({ name: doc.name }, cb);
     },
     function(arg, cb) {
