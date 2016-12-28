@@ -11,7 +11,7 @@ http.createServer(function(req, res) {
 }).listen(3000);
 ```
 
-> [客户端](./server.js)
+> [客户端](./client.js)
 
 ```
 //发起请求
