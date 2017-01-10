@@ -11,3 +11,6 @@ show how to upload file use multer
 
 ## [http](https://github.com/qingmuAdore/jsDemo/tree/master/http)
 show simple http server
+
+## [redis](https://github.com/qingmuAdore/jsDemo/tree/master/redis)
+show how to use redis
