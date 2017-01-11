@@ -9,7 +9,9 @@ client.on('ready', function(err) {
 });
 
 client.on('connect', function() {
-    client.hmset('short', { 'js': 'javascript', 'C#': 'C Sharp' });; //, redis.print);
+    client.hmset('short', { 'js': 'javascript', 'C#': 'C Sharp' }, function() {
+        console.log(arguments);
+    });; //, redis.print);
     client.hmset('short', 'SQL', 'Structured Query Language', 'HTML', 'HyperText Mark-up Language', redis.print);
 
     client.hgetall("short", function(err, res) {
