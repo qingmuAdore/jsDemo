@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var BaseSchema = require('./base.js');
 
-
-var UserSchema = new Schema({
+var UserSchema = new BaseSchema({
     name: String,
     age: Number,
     work: String,
