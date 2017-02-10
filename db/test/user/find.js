@@ -21,6 +21,10 @@ async.waterfall([
     },
     function(arg, cb) {
         console.log(arg);
+        user.findOne({ name: doc.name }, "age work", cb);
+    },
+    function(arg, cb) {
+        console.log(arg);
         user.remove({}, cb);
     }
 ], function(err, res) {
