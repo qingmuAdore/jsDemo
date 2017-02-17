@@ -7,7 +7,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/app/array.js",
+            "program": "${workspaceRoot}/app/command.js",
             "cwd": "${workspaceRoot}"
         },
         {

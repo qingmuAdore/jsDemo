@@ -82,3 +82,6 @@ client.hgetall("hash key", function(err, reply) {
   'hashtest 3': 'some 3 value',
   'hashtest 4': 'some 4 value' }
 ```
+
+
+### schedule
