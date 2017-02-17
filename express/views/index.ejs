@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/cookie.js"></script>
+    <script type="text/javascript" src="/javascripts/ajax.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setCookie('username', 'pauly', 12);
+            $('.ajax').on('click', function() {
+                request('GET', '/cookie', null, function(data) {
+                    console.log(data);
+                    alert(data);
+                })
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <p>Welcome to
+        <%= title %>
+    </p>
+
+    <div class="ajax" style="background:yellow;width:120px;height:60px;text-align:center;"> click</div>
+
+</body>
+
+</html>
