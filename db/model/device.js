@@ -8,7 +8,7 @@ var DeviceSchema = new BaseSchema({
 
 var device = DeviceSchema.statics;
 
-device.getQuery = function(param) {
+device.getQuery = function(param) { 
     return { name: param };
 }
 
