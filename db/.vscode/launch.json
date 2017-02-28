@@ -7,7 +7,9 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/test/aggregate/lookup.js",
+            // "program": "${workspaceRoot}/test/aggregate/lookup.js",
+            // "program":"${workspaceRoot}/test/bean/model_actvitiy.bean.js",
+            "program": "${workspaceRoot}/test/user/create.js",
             "cwd": "${workspaceRoot}"
         },
         {

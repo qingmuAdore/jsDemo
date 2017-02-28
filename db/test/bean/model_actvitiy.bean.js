@@ -7,6 +7,7 @@
 var async = require('async');
 var db = require('../../lib/db.js');
 var award = require('../../model/award.js');
+var camera = require('../../model/camera.js');
 var activity = require('../../model/activity.js');
 
 var awardDoc = {

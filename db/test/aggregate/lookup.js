@@ -9,23 +9,23 @@ var _datastream, _user, _area;
 
 function removeAll(cb) {
     async.parallel([
-        function(cb) {
+        function (cb) {
             user.removeAll(cb);
         },
-        function(cb) {
+        function (cb) {
             dataType.removeAll(cb);
         },
-        function(cb) {
+        function (cb) {
             camera.removeAll(cb);
         }
     ], cb);
 }
 
 async.waterfall([
-    function(cb) {
+    function (cb) {
         db.openDB(cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         var doc = {
             name: 'pauly',
             age: '28',
@@ -33,7 +33,7 @@ async.waterfall([
         };
         user.add(doc, cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         _user = arg._doc._id;
         var doc = {
             name: 'cmpp',
@@ -41,7 +41,7 @@ async.waterfall([
         };
         area.add(doc, cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         _area = arg._doc._id;
         var docs = [{
             name: 'name1',
@@ -52,7 +52,7 @@ async.waterfall([
         }]
         dataType.add(docs, cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         _datastream = [{
             stream: 'stream1',
             tp: arg[0]._doc._id
@@ -61,37 +61,37 @@ async.waterfall([
             tp: arg[1]._doc._id
         }];
         var docs = [{
-                name: 'camera1',
-                datastream: _datastream,
-                user: _user,
-                area: _area,
-                point: { x: 12, y: 15 },
-            },
-            {
-                name: 'camera2',
-                datastream: _datastream,
-                user: _user,
-                area: _area,
-                point: { x: 13, y: 16 },
-            },
-            {
-                name: 'camera3',
-                datastream: _datastream,
-                user: _user,
-                area: _area,
-                point: { x: 14, y: 15 },
-            },
-            {
-                name: 'camera4',
-                datastream: _datastream,
-                user: _user,
-                area: _area,
-                point: { x: 15, y: 16 },
-            }
+            name: 'camera1',
+            datastream: _datastream,
+            user: _user,
+            area: _area,
+            point: { x: 12, y: 15 },
+        },
+        {
+            name: 'camera2',
+            datastream: _datastream,
+            user: _user,
+            area: _area,
+            point: { x: 13, y: 16 },
+        },
+        {
+            name: 'camera3',
+            datastream: _datastream,
+            user: _user,
+            area: _area,
+            point: { x: 14, y: 15 },
+        },
+        {
+            name: 'camera4',
+            datastream: _datastream,
+            user: _user,
+            area: _area,
+            point: { x: 15, y: 16 },
+        }
         ];
         camera.add(docs, cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         var query = {
             user: _user
         };
@@ -99,6 +99,7 @@ async.waterfall([
             datastream: 1,
             user: 1,
             area: 1,
+            areaOuser : 1,
             add: { $add: ["$point.x", "$point.y"] }
         };
         var lookup = [{
@@ -112,13 +113,17 @@ async.waterfall([
             foreignField: '_id',
             as: 'area'
         }];
-        camera.aggregate().match(query).lookup(lookup[0]).lookup(lookup[1]).project(project).exec(cb);
+        camera.aggregate()
+        .match(query)
+        .lookup(lookup[0]).lookup(lookup[1])
+        .project(project)
+        .exec(cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         // console.log(arg);
         console.log(JSON.stringify(arg));
         removeAll(cb);
     }
-], function(err, res) {
+], function (err, res) {
     db.closeDB();
 });

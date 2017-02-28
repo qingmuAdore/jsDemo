@@ -17,7 +17,7 @@ async.waterfall([
     },
     function(arg, cb) {
         console.log(arg);
-        user.remove({}, cb);
+        user.remove({name: 'paulyaa'}, cb);
     }
 ], function(err, res) {
     db.closeDB();
