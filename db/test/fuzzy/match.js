@@ -2,7 +2,7 @@
  * 模糊匹配
  * 
  * eg: 匹配字符串 'pauly'
- */ 
+ */
 var async = require('async');
 var db = require('../../lib/db.js');
 var user = require('../../model/user.js');

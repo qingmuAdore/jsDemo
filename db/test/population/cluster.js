@@ -29,38 +29,38 @@ var activityDoc = {
 }
 
 var activityResultDoc = {
-    result:'congratulation',
+    result: 'congratulation',
 }
 
 async.waterfall([
-    function(cb) {
+    function (cb) {
         db.openDB(cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         award.add(awardDoc, cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         console.log(arg);
         activityDoc.awardId = arg._doc._id;
         activity.add(activityDoc, cb);
     },
-    function(arg, cb) {
-                console.log(arg);
+    function (arg, cb) {
+        console.log(arg);
         activityResultDoc.activityId = arg._doc._id;
-        activityResult.add(activityResultDoc,cb);
+        activityResult.add(activityResultDoc, cb);
     },
-    function(arg,cb){
-                console.log(arg);
-        var query = {result:activityResultDoc.result};
+    function (arg, cb) {
+        console.log(arg);
+        var query = { result: activityResultDoc.result };
         var pop = {
-            path:'activityId',
-            populate:{
-                path:'awardId'
+            path: 'activityId',
+            populate: {
+                path: 'awardId'
             }
         };
         activityResult.find(query).populate(pop).exec(cb);
     }
-], function(err, res) {
+], function (err, res) {
     console.log(res);
     db.closeDB();
 });
