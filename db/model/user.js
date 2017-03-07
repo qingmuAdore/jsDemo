@@ -7,4 +7,13 @@ var UserSchema = new BaseSchema({
     work: String,
 });
 
+
+UserSchema.pre('findOne',function(next){
+    console.log('hook findOne');
+    next();
+});
+
+
+
+
 module.exports = mongoose.model('User', UserSchema, 'user');

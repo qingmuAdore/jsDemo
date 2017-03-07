@@ -1,15 +1,24 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Mixed = Schema.Types.Mixed;
+var BaseSchema = require('./base.js');
 
-var RoomSchema = new mongoose.Schema({
+var RoomSchema = new BaseSchema({
     name: String,
     scope: {
-        type: [[Number]],
-        index: {
-            type: '2d',
-            sparse: true
-        }
+        // coordinates: [[{ type: Number }]],
+        // coordinates: [[Number]],
+        coordinates: [],
+        type: {
+            type: String,
+            default: 'Polygon'
+        },
+        // coordinates: [mongoose.Schema.Types.Mixed],
+        // index: '2dsphere'// { type: '2dsphere', sparse: true }
     }
 });
 
-module.exports = mongoose.model('Goods', RoomSchema, 'goods');
+// RoomSchema.index({ coordinates: '2dsphere' });
+RoomSchema.index({ scope: '2dsphere' });
+
+module.exports = mongoose.model('Room', RoomSchema, 'room');

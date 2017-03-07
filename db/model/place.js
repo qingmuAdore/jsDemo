@@ -2,19 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var BaseSchema = require('./base.js');
 
-var PlaceSchema = new Schema({//new BaseSchema({
-    name: String, //名称
-    lac: {
-        type: { type: String },
-        coordinates: []
+var PlaceSchema = new BaseSchema({
+    name: String,
+    location: {
+        type: { type: String, default: 'Point' },
+        coordinates: [Number],
     }
 });
 
-PlaceSchema.index({ loc: '2dsphere' });
-var place = PlaceSchema.statics;
-
-place.getQuery = function (param) {
-    return { name: param };
-}
+// PlaceSchema.index({ coordinates: '2d' });
+PlaceSchema.index({ location: '2d' });
 
 module.exports = mongoose.model('Place', PlaceSchema, 'place');
