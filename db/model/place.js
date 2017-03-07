@@ -11,6 +11,6 @@ var PlaceSchema = new BaseSchema({
 });
 
 // PlaceSchema.index({ coordinates: '2d' });
-PlaceSchema.index({ location: '2d' });
+PlaceSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('Place', PlaceSchema, 'place');

@@ -52,29 +52,38 @@ async.waterfall([
     function (arg, cb) {
         place.create(data, cb);
     },
-    function (arg, cb) {
-        var query = {
-            "location.coordinates": {
-                $near: [0.5, 0.5],
-                $maxDistance: 1,
-            }
-        };
-        place.find(query, cb);
-    },
     // function (arg, cb) {
-    //     console.log(arg);
     //     var query = {
+    //         // location: {
+    //         //     $near: {
+    //         //         $geometry: {
+    //         //             type: "Point",
+    //         //             coordinates: [1.5, 1.5]
+    //         //         },
+    //         //         // $maxDistance: 1
+    //         //     }
+    //         // }
     //         location: {
-    //             $geoWithin: {
-    //                 $geometry: {
-    //                     type: "Polygon",
-    //                     coordinates: [[[0, 0], [0, 1.5], [1.5, 1.5], [1.5, 0], [0, 0]]]
-    //                 }
-    //             }
+    //             $nearSphere: [0.5, 0.5],
+    //             $maxDistance: 1
     //         }
     //     };
     //     place.find(query, cb);
-    // }
+    // },
+    function (arg, cb) {
+        console.log(arg);
+        var query = {
+            location: {
+                $geoWithin: {
+                    $geometry: {
+                        type: "Polygon",
+                        coordinates: [[[0, 0], [0, 1.5], [1.5, 1.5], [1.5, 0], [0, 0]]]
+                    }
+                }
+            }
+        };
+        place.find(query, cb);
+    }
 ], function (err, res) {
     console.log(err);
     console.log(res);
