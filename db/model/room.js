@@ -15,7 +15,8 @@ var RoomSchema = new BaseSchema({
         },
         // coordinates: [mongoose.Schema.Types.Mixed],
         // index: '2dsphere'// { type: '2dsphere', sparse: true }
-    }
+    },
+  
 });
 
 // RoomSchema.index({ coordinates: '2dsphere' });
