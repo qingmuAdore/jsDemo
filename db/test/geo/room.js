@@ -39,6 +39,7 @@ var docs = [{
     }
 }]
 
+
 function exit() {
     async.parallel([
         function (cb) {
@@ -48,6 +49,7 @@ function exit() {
         db.closeDB();
     });
 }
+
 
 async.waterfall([
     function (cb) {
