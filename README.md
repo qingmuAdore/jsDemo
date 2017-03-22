@@ -4,17 +4,17 @@ same js small function demo
 ## [async](./async)
 show how to use async 
 
-## [db](https://github.com/qingmuAdore/jsDemo/tree/master/db)
+## [db](./db)
 show how to use mongoose 
 
-## [express](https://github.com/qingmuAdore/jsDemo/tree/master/express)
+## [express](./express)
 show how to use express and same middleware 
 
-## [file](https://github.com/qingmuAdore/jsDemo/tree/master/file)
+## [file](./file)
 show how to upload file use multer
 
-## [http](https://github.com/qingmuAdore/jsDemo/tree/master/http)
+## [http](./http)
 show simple http server
 
-## [redis](https://github.com/qingmuAdore/jsDemo/tree/master/redis)
+## [redis](./redis)
 show how to use redis
