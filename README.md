@@ -1,11 +1,14 @@
 # jsDemo
 same js small function demo
 
-## [express](https://github.com/qingmuAdore/jsDemo/tree/master/express)
-show how to use express and same middleware 
+## [async](./async)
+show how to use async 
 
 ## [db](https://github.com/qingmuAdore/jsDemo/tree/master/db)
 show how to use mongoose 
+
+## [express](https://github.com/qingmuAdore/jsDemo/tree/master/express)
+show how to use express and same middleware 
 
 ## [file](https://github.com/qingmuAdore/jsDemo/tree/master/file)
 show how to upload file use multer
