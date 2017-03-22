@@ -7,7 +7,8 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/app/command.js",
+            // "program": "${workspaceRoot}/app/command.js",
+            "program": "${workspaceRoot}/list/ltrim.js",
             "cwd": "${workspaceRoot}"
         },
         {
