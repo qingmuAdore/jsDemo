@@ -17,7 +17,7 @@ async.autoInject({
     make_folder: function (callback) {
         // async code to create a directory to store a file in
         // this is run at the same time as getting the data
-        callback(null, 'folder');
+        callback(null);
     },
     write_file: function (get_data, make_folder, callback) {
         // once there is some data and the directory exists,

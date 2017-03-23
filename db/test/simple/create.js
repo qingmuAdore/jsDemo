@@ -1,6 +1,7 @@
 var async = require('async');
 var db = require('../../lib/db.js');
 var user = require('../../model/user.js');
+var mongoose = require('mongoose');
 
 
 async.waterfall([
@@ -17,6 +18,7 @@ async.waterfall([
     },
     function(arg, cb) {
         console.log(arg);
+        console.log(arg instanceof mongoose.Model);
         user.remove({name: 'paulyaa'}, cb);
     }
 ], function(err, res) {

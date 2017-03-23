@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NodeJs文件上传</title>
+    <meta charset="utf-8" />
+    <script src="/javascripts/jquery.js" type="text/javascript" language="javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.fileupload').change(function (event) {
+                /* Act on the event */
+                if ($('.fileupload').val().length) {
+                    var fileName = $('.fileupload').val();
+                    var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
+                    if (extension == ".jpg" || extension == ".png") {
+                        var data = new FormData();
+                        data.append('upload', $('#fileToUpload')[0].files[0]);
+                        $.ajax({
+                            url: 'apply',
+                            type: 'POST',
+                            data: data,
+                            cache: false,
+                            contentType: false, //不可缺参数
+                            processData: false, //不可缺参数
+                            success: function (data) {
+                                console.log(data);
+                            },
+                            error: function () {
+                                console.log('error');
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <h2>图片上传</h2>
+    <div class="upload-container">
+        <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
+    </div>
+</body>
+
+</html>
