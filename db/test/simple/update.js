@@ -20,6 +20,7 @@ async.waterfall([
         user.update({ work: 'architect' }, cb);
     },
     function(arg, cb) {
+        console.log(arguments);
         user.findOne({ name: doc.name }, cb);
     },
     function(arg, cb) {
