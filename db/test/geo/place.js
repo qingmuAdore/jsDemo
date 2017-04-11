@@ -76,23 +76,23 @@ async.waterfall([
         };
         place.find(query, cb);
     },
-    // function (arg, cb) {
-    //     console.log(arg);
-    //     var query = {
-    //         location: {
-    //             $geoWithin: {
-    //                 $geometry: {
-    //                     type: "Polygon",
-    //                     coordinates: [[[0, 0], [0, 1.5], [1.5, 1.5], [1.5, 0], [0, 0]]]
-    //                 }
-    //             }
-    //         }
-    //     };
-    //     place.find(query, cb);
-    // }
+    function (arg, cb) {
+        console.log(arg);
+        var query = {
+            location: {
+                $geoWithin: {
+                    $geometry: {
+                        type: "Polygon",
+                        coordinates: [[[0, 0], [0, 1.5], [1.5, 1.5], [1.5, 0], [0, 0]]]
+                    }
+                }
+            }
+        };
+        place.find(query, cb);
+    }
 ], function (err, res) {
     console.log(err);
     console.log(res);
-    // exit();
-    db.closeDB();
+    exit();
+    // db.closeDB();
 })

@@ -5,10 +5,10 @@ var mongoose = require('mongoose');
 
 
 async.waterfall([
-    function(cb) {
+    function (cb) {
         db.openDB(cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         var doc = {
             name: 'pauly',
             age: '28',
@@ -16,11 +16,11 @@ async.waterfall([
         };
         user.create(doc, cb);
     },
-    function(arg, cb) {
+    function (arg, cb) {
         console.log(arg);
         console.log(arg instanceof mongoose.Model);
-        user.remove({name: 'paulyaa'}, cb);
+        user.remove({ name: 'paulyaa' }, cb);
     }
-], function(err, res) {
+], function (err, res) {
     db.closeDB();
 });

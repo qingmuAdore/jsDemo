@@ -1,3 +1,24 @@
+/**
+ * lookup 查阅
+ * 
+ * {
+   $lookup:
+     {
+       from: <collection to join>,
+       localField: <field from the input documents>,
+       foreignField: <field from the documents of the "from" collection>,
+       as: <output array field>
+     }
+  }
+
+  eg:
+ {
+    from: 'user',        //查阅的集合
+    localField: 'user',  //本集合的字段
+    foreignField: '_id', //查询集合对应字段
+    as: 'user'           //输出字段
+ }
+ */
 var async = require('async');
 var db = require('../../lib/db.js');
 var user = require('../../model/user.js');
@@ -5,7 +26,6 @@ var area = require('../../model/area.js');
 var dataType = require('../../model/dataType.js');
 var camera = require('../../model/camera.js');
 
-var _datastream, _user, _area;
 
 function removeAll(cb) {
     async.parallel([
@@ -99,7 +119,7 @@ async.waterfall([
             datastream: 1,
             user: 1,
             area: 1,
-            areaOuser : 1,
+            areaOuser: 1,
             add: { $add: ["$point.x", "$point.y"] }
         };
         var lookup = [{
@@ -114,10 +134,10 @@ async.waterfall([
             as: 'area'
         }];
         camera.aggregate()
-        .match(query)
-        .lookup(lookup[0]).lookup(lookup[1])
-        .project(project)
-        .exec(cb);
+            .match(query)
+            .lookup(lookup[0]).lookup(lookup[1])
+            .project(project)
+            .exec(cb);
     },
     function (arg, cb) {
         // console.log(arg);
