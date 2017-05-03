@@ -54,8 +54,8 @@ function apply(req, res) {
             var newPath = form.uploadDir + avatarName;
             displayUrl = avatarName;
             // fs.renameSync(files.upload.path, newPath); //重命名
-            var buf = fs.readFileSync(files.upload.path);
-            fs.writeFileSync(newPath);
+            // var buf = fs.readFileSync(files.upload.path);
+            // fs.writeFileSync(newPath);
             res.send({
                 code: 200,
                 avatarName: avatarName

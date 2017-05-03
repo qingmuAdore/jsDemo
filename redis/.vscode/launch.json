@@ -8,7 +8,8 @@
             "request": "launch",
             "name": "Launch Program",
             // "program": "${workspaceRoot}/app/command.js",
-            "program": "${workspaceRoot}/list/ltrim.js",
+            // "program": "${workspaceRoot}/list/ltrim.js",
+              "program": "${workspaceRoot}/cluster/example.js",
             "cwd": "${workspaceRoot}"
         },
         {

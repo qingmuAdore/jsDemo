@@ -3,6 +3,8 @@ var async = require('async');
 redis.open();
 var client = redis.client;
 
+client.set()
+
 async.waterfall([
     function (cb) {
         // 支持压入多个数据
