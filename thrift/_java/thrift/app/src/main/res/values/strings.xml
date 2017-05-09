@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Thrift</string>
+    <string name="tx_connect">连接</string>
+</resources>

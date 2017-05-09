@@ -18,8 +18,8 @@
  */
 
 var thrift = require('thrift');
-var Calculator = require('../gen-nodejs/Calculator');
-var ttypes = require('../gen-nodejs/tutorial_types');
+var Calculator = require('./gen-nodejs/Calculator');
+var ttypes = require('./gen-nodejs/tutorial_types');
 const assert = require('assert');
 
 var transport = thrift.TBufferedTransport;

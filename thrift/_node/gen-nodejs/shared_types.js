@@ -3,9 +3,15 @@
 //
 // DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
 //
+"use strict";
+
+var thrift = require('thrift');
+var Thrift = thrift.Thrift;
+var Q = thrift.Q;
 
 
-SharedStruct = function(args) {
+var ttypes = module.exports = {};
+var SharedStruct = module.exports.SharedStruct = function(args) {
   this.key = null;
   this.value = null;
   if (args) {
@@ -33,14 +39,14 @@ SharedStruct.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.I32) {
-        this.key = input.readI32().value;
+        this.key = input.readI32();
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.value = input.readString().value;
+        this.value = input.readString();
       } else {
         input.skip(ftype);
       }
