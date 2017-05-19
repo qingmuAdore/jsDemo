@@ -7,12 +7,12 @@ var router = express.Router();
 var multer = require('multer');
 var storage = multer.diskStorage({
     //文件路径
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, 'public/file');
     },
     //文件名称
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + '_' + file.originalname);
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
     }
 })
 
@@ -49,9 +49,18 @@ function display(req, res, next) {
 
 router.route('/').post(display).get(display);
 
+var singleDeal = upload.single('avatar');
+
 //单文件上传
 //
 router.route('/singleUpload').post(upload.single('avatar'), load);
+//带错误处理
+// router.post('/singleUpload', function (req, res) {
+//     singleDeal(req, res, function (err) {
+//         if (err) return res.send({ err: err });
+//         res.send('success');
+//     })
+// })
 
 //多附件上传  
 //注意上传界面中的 <input type="file" name="photos"/>中的name必须是下面代码中指定的名 
