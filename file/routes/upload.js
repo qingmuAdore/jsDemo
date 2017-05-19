@@ -8,7 +8,7 @@ var multer = require('multer');
 var storage = multer.diskStorage({
     //文件路径
     destination: function (req, file, cb) {
-        cb(null, 'public/file');
+        cb(null, __dirname + '/../public/file');
     },
     //文件名称
     filename: function (req, file, cb) {
