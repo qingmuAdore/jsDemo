@@ -8,7 +8,8 @@ var multer = require('multer');
 var storage = multer.diskStorage({
     //文件路径
     destination: function (req, file, cb) {
-        cb(null, __dirname + '/../public/file');
+        console.log(__dirname + '/../public/files');
+        cb(null, __dirname + '/../public/files');
     },
     //文件名称
     filename: function (req, file, cb) {
@@ -53,14 +54,15 @@ var singleDeal = upload.single('avatar');
 
 //单文件上传
 //
-router.route('/singleUpload').post(upload.single('avatar'), load);
+// router.post('/singleUpload', upload.single('avatar'), load);
 //带错误处理
-// router.post('/singleUpload', function (req, res) {
-//     singleDeal(req, res, function (err) {
-//         if (err) return res.send({ err: err });
-//         res.send('success');
-//     })
-// })
+router.post('/singleUpload', function (req, res) {
+    singleDeal(req, res, function (err) {
+        console.log(req.body);
+        if (err) return res.send({ err: err });
+        res.send('success');
+    })
+})
 
 //多附件上传  
 //注意上传界面中的 <input type="file" name="photos"/>中的name必须是下面代码中指定的名 

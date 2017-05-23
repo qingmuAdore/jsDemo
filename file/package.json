@@ -1,6 +1,7 @@
 {
     "name": "file",
     "version": "0.0.0",
+    "main": "./bin/www.js",
     "private": true,
     "scripts": {
         "start": "node ./bin/www.js"
