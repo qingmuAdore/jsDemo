@@ -8,6 +8,7 @@
     <script type="text/javascript">
         function ajax() {
             var formData = new FormData($("#files")[0]);
+            formData.append("username", "Groucho");
             $.ajax({
                 url: '/upload/singleUpload',
                 type: 'POST',
