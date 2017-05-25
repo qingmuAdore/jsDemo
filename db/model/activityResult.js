@@ -5,13 +5,13 @@ var BaseSchema = require('./base.js');
 
 
 var ActivityResultSchema = new BaseSchema({
-    result:String,
+    result: String,
     activityId: { type: ObjectId, ref: 'Activity' }, //Activity
 });
 
 var activityResult = ActivityResultSchema.statics;
 
-activityResult.relative = function() {
+activityResult.relative = function () {
     return 'activityId';
 }
 
