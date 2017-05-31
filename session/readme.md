@@ -24,3 +24,26 @@ app.use(session({
 request.session.isLogin = true;
 request.session.user = u._doc;
 ```
+
+## use
+
+> /user/register
+
+```
+register user
+```
+
+> /user/login
+
+```
+user login
+
+session 记录登录及其用户信息
+```
+
+> /main
+
+```
+若用户已登录,则main页显示用户信息
+  用户未登录,则重定向到用户登录页
+```
