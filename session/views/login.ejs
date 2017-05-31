@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="/javascripts/jquery-3.2.1.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.submit').on('click', function () {
+        $.ajax({
+          type: 'POST',
+          url: '/user/login',
+          data: {
+            account: $('.account').val(),
+            pwd: $('.pwd').val()
+          },
+          beforeSend: function () {
+            document.getElementById("result").innerHTML = "";
+          },
+          success: function (data) {
+            if (data.err) return document.getElementById("result").innerHTML = "<span style='color:#EF0000'>" + data.err + "</span>";
+            console.log(JSON.stringify(data));
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            document.getElementById("result").innerHTML = "<span style='color:#EF0000'>连接不到服务器，请检查网络！</span>";
+          },
+          complete: function () {
+
+          }
+        });
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+
+  <div id="result" style="height:45px"></div>
+
+  <div>
+    <input type="text" class="account" placeholder="账号"> </br>
+    <input type="text" class="pwd" placeholder="密码">
+    <input type="submit" class="submit">
+  </div>
+
+</body>
+
+</html>
