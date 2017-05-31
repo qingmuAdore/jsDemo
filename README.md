@@ -21,3 +21,9 @@ show use mqtt
 
 ## [redis](./redis)
 show how to use redis
+
+## [session](./session)
+show how to use express-session
+
+## [thrift](./thrift)
+show how to use thrift
