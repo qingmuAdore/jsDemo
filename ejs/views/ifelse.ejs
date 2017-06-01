@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!-- /ifelse  if else 表达式 -->
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% if (user) { %>
+        <h2><%= user.name %></h2>
+        <h3><%= user.age %></h3>
+    <% } else {%>
+        <h2> user is empty </h2>
+    <% } %>
+
+  </body>
+</html>

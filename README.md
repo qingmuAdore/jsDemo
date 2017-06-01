@@ -7,6 +7,12 @@ show how to use async
 ## [db](./db)
 show how to use mongoose 
 
+## [dnode](./dnode)
+show how to use dnode rpc
+
+## [ejs](./ejs)
+show how to use ejs  
+
 ## [express](./express)
 show how to use express and same middleware 
 

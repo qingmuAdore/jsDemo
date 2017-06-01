@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (users) { %>
+    <select name="" class="matter">
+    <% users.forEach(function(user){ %>
+        <option  value="<%= user.name %>" ><%= user.name %></option>
+    <% }); %>
+    </select>
+  <% } %>
+</body>
+
+</html>

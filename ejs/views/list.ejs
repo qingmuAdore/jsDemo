@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- /list  forEach 以及 include 子模块使用  -->
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <ul>
+        <% users.forEach(function(user){ %>
+            <% include user/show %> 
+        <% }); %>
+    </ul>
+
+    <ul style="background:gray">
+        <% users.forEach(function(user){ %>
+            <%- include('user/show', {user: user}) %>
+        <% }); %>
+    </ul>
+  </body>
+</html>
