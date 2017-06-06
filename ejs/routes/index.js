@@ -50,7 +50,7 @@ function delimiter(req, res) {
 
 function ergodic(req, res) {
     res.render('ergodic', {
-        title:'ergodic',
+        title: 'ergodic',
         person: {
             name: 'pauly',
             age: 10
@@ -75,9 +75,18 @@ function select(req, res) {
     });
 }
 
+function operate(req, res) {
+    res.render('operate', {
+        title: 'operate',
+        opr: { l: 8, r: 4 },
+        add: function (l, r) { return l + r; }
+    });
+}
+
 router.route('/list').get(list);
 router.route('/delimiter').get(delimiter);
 router.route('/select').get(select);
 router.route('/ergodic').get(ergodic);
+router.route('/operate').get(operate);
 
 module.exports = router;
