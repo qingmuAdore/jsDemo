@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (users) { %>
+    <select name="" class="matter">
+    <% for(var i =0;i<users.length;i++){ %>
+        <option  value="<%= users[i].name %>" ><%= users[i].name %></option>
+    <% } %>
+    </select>
+  <% } %>
+
+  <div> 
+     <% for(var k in person){ %>
+        <%= person[k]%> 
+     <% } %>
+  </div>
+</body>
+
+</html>

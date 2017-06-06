@@ -17,6 +17,7 @@ router.get('/home', function (req, res) {
     });
 });
 
+//ifelse
 router.get('/ifelse', function (req, res) {
     res.render('ifelse', {
         title: 'home',
@@ -47,6 +48,21 @@ function delimiter(req, res) {
     });
 }
 
+function ergodic(req, res) {
+    res.render('ergodic', {
+        title:'ergodic',
+        person: {
+            name: 'pauly',
+            age: 10
+        },
+        users: [
+            { name: 'tj' },
+            { name: 'mape' },
+            { name: 'guillermo' }
+        ]
+    });
+};
+
 
 function select(req, res) {
     res.render('select', {
@@ -62,6 +78,6 @@ function select(req, res) {
 router.route('/list').get(list);
 router.route('/delimiter').get(delimiter);
 router.route('/select').get(select);
-
+router.route('/ergodic').get(ergodic);
 
 module.exports = router;

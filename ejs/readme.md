@@ -103,6 +103,46 @@ users: [
 <% } %>
 ```
 
+
+### for
+
+> url /ergodic
+
+> render
+
+```
+title:'ergodic',
+person: {
+    name: 'pauly',
+    age: 10
+},
+users: [
+    { name: 'tj' },
+    { name: 'mape' },
+    { name: 'guillermo' }
+]
+```
+
+> parser
+
+```
+//遍历数组
+<% if (users) { %>
+<select name="" class="matter">
+<% for(var i =0;i<users.length;i++){ %>
+    <option  value="<%= users[i].name %>" ><%= users[i].name %></option>
+<% } %>
+</select>
+<% } %>
+
+//遍历成员变量
+<div> 
+    <% for(var k in person){ %>
+    <%= person[k]%> 
+    <% } %>
+</div>
+```
+
 ### delimiter
 
 > url /delimiter
