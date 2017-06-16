@@ -3,6 +3,7 @@
 ### math
 
 ```
+soap 的示例
 使用 node-soap(npm install soap -g) 启动web service服务
 ```
 > wsdl
@@ -15,6 +16,22 @@ Eclipse JEE, WEB Service 创建 该文件,并编辑
 
 ```
 server.js
+// 对应 xml文档 内容
+var MathService = {
+    math: {  //  service
+        SMath: {  // port 
+            add: function (args, cb, headers, req) { //operation
+                console.log(args);
+                return Number(args.x) + Number(args.y);
+            },
+            sub: function (args, cb, headers, req) { //operation
+                console.log(args);
+                return Number(args.x) - Number(args.y);
+            },
+        }
+    }
+};
+
 
 启动服务
 soap.listen(server, '/mathWS', MathService, xml);

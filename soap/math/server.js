@@ -2,14 +2,15 @@ var soap = require('soap');
 var http = require('http');
 var uuid = require('node-uuid');
 
+// 对应 xml文档 内容
 var MathService = {
-    math: {
-        SMath: {
-            add: function (args, cb, headers, req) {
+    math: {  //  service
+        SMath: {  // port 
+            add: function (args, cb, headers, req) { //operation
                 console.log(args);
                 return Number(args.x) + Number(args.y);
             },
-            sub: function (args, cb, headers, req) {
+            sub: function (args, cb, headers, req) {//operation
                 console.log(args);
                 return Number(args.x) - Number(args.y);
             },
