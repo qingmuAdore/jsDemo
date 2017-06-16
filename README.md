@@ -31,5 +31,8 @@ show how to use redis
 ## [session](./session)
 show how to use express-session
 
+## [thrift](./soap)
+show how to use soap
+
 ## [thrift](./thrift)
 show how to use thrift

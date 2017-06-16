@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:s="http://www.w3.org/2001/XMLSchema" 
+ xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+ xmlns:s0="http://flightly.com/ws" name="flightly"
+  targetNamespace="http://flightly.com/ws" 
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://flightly.com/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="buyTicket">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="Destination" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="seats" type="xs:long"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Price" type="xs:float"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="accountid" type="xs:long"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="startingpoint" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="buyTicketResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="buyTicketResult" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traveldocuments">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="accountid" type="xs:long"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Destination" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOfOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="s0:Order"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Order">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="date" type="xs:dateTime"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="accountId" type="xs:long"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="Destination" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="seats" type="xs:long"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="Price" type="xs:float"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="confirmationId" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="traveldocumentsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="traveldocumentsResult" type="s0:ArrayOfOrder"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="long" type="xs:long"/>
+      <xs:element name="ArrayOfOrder" nillable="true" type="s0:ArrayOfOrder"/>
+    </xs:schema>
+  </types>
+  <message name="buyTicketSoapIn">
+    <part element="s0:buyTicket" name="parameters"/>
+  </message>
+  <message name="buyTicketSoapOut">
+    <part element="s0:buyTicketResponse" name="parameters"/>
+  </message>
+  <message name="traveldocumentsSoapIn">
+    <part element="s0:traveldocuments" name="parameters"/>
+  </message>
+  <message name="traveldocumentsSoapOut">
+    <part element="s0:traveldocumentsResponse" name="parameters"/>
+  </message>
+  <message name="buyTicketHttpGetIn">
+    <part name="Destination" type="s:string"/>
+    <part name="seats" type="s:long"/>
+    <part name="Price" type="s:float"/>
+    <part name="accountid" type="s:int"/>
+    <part name="startingpoint" type="s:string"/>
+  </message>
+  <message name="buyTicketHttpGetOut">
+    <part element="s0:long" name="Body"/>
+  </message>
+  <message name="traveldocumentsHttpGetIn">
+    <part name="accountid" type="s:int"/>
+    <part name="startingpoint" type="s:string"/>
+  </message>
+  <message name="traveldocumentsHttpGetOut">
+    <part element="s0:ArrayOfOrder" name="Body"/>
+  </message>
+  <message name="buyTicketHttpPostIn">
+    <part name="Destination" type="s:string"/>
+    <part name="seats" type="s:long"/>
+    <part name="Price" type="s:float"/>
+    <part name="accountid" type="s:long"/>
+    <part name="startingpoint" type="s:string"/>
+  </message>
+  <message name="buyTicketHttpPostOut">
+    <part element="s0:long" name="Body"/>
+  </message>
+  <message name="traveldocumentsHttpPostIn">
+    <part name="accountid" type="s:long"/>
+    <part name="startingpoint" type="s:string"/>
+  </message>
+  <message name="traveldocumentsHttpPostOut">
+    <part element="s0:ArrayOfOrder" name="Body"/>
+  </message>
+  <portType name="FlightlySoap">
+    <operation name="buyTicket">
+      <input message="s0:buyTicketSoapIn"/>
+      <output message="s0:buyTicketSoapOut"/>
+    </operation>
+    <operation name="traveldocuments">
+      <input message="s0:traveldocumentsSoapIn"/>
+      <output message="s0:traveldocumentsSoapOut"/>
+    </operation>
+  </portType>
+  <binding name="FlightlySoap" type="s0:FlightlySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="buyTicket">
+      <soap:operation soapAction="http://flightly.com/ws/buyTicket" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="traveldocuments">
+      <soap:operation soapAction="http://flightly.com/ws/traveldocuments" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="Flightly">
+    <port binding="s0:FlightlySoap" name="FlightlySoap">
+      <soap:address location="http://10.10.38.80:9999/flightlyWS"/>
+    </port>
+  </service>
+</definitions>
