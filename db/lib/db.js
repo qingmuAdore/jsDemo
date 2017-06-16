@@ -5,20 +5,20 @@ if (global.Promise) {
     mongoose.Promise = global.Promise;
 }
 
-exports.openDB = function(callback) {
-    callback = callback || function() {};
+exports.openDB = function (callback) {
+    callback = callback || function () { };
 
     var connection = mongoose.connection;
 
     connection.on('error', console.error.bind(console, 'mongodb connection error'));
 
-    connection.once('open', function() {
+    connection.once('open', function () {
         console.log('mongodb connected.');
     });
 
     console.log('mongodb connect ' + url);
 
-    mongoose.connect(url, function(err) {
+    mongoose.connect(url, function (err) {
         if (err) {
             console.log('mongodb connect error: ' + err);
             process.exit(-1);
@@ -29,7 +29,7 @@ exports.openDB = function(callback) {
     });
 }
 
-exports.closeDB = function(callback) {
-    callback = callback || function() {};
+exports.closeDB = function (callback) {
+    callback = callback || function () { };
     mongoose.disconnect(callback);
 }

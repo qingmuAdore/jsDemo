@@ -16,10 +16,10 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     console.log(data);
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     document.getElementById("status").innerHTML = "<span style='color:#EF0000'>连接不到服务器，请检查网络！</span>";
                 }
             });
@@ -34,16 +34,23 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     console.log(data);
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     document.getElementById("status").innerHTML = "<span style='color:#EF0000'>连接不到服务器，请检查网络！</span>";
                 }
             });
         }
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $('.addFile').on('click', function () {
+                $("#mfiles").prepend(' <input type="file" name="photos" /><br/>');   //在表格后面添加一行
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -56,6 +63,8 @@
         <input type="button" value="submit" onclick="ajax()" /><br/>
     </form>
 
+    <input type="button" class="addFile" style="margin-top:40px" value="添加">
+
     <h2>多文件上传</h2>
     <form method="post" enctype="multipart/form-data" id="mfiles">
         <input type="file" name="photos" /><br/>
@@ -65,6 +74,9 @@
         <input type="text" name="bbb" /><br/>
         <input type="button" value="submit" onclick="majax()" /><br/>
     </form>
+
+
+
 </body>
 
 </html>

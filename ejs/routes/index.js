@@ -85,7 +85,7 @@ function operate(req, res) {
 
 router.route('/list').get(list);
 router.route('/delimiter').get(delimiter);
-router.route('/select').get(select);
+router.route('/select').get(select); 
 router.route('/ergodic').get(ergodic);
 router.route('/operate').get(operate);
 
