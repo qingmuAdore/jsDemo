@@ -1,89 +1,228 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.beaconice.cn/math/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="math" targetNamespace="http://www.beaconice.cn/math/">
-  <wsdl:types>
-    <xsd:schema targetNamespace="http://www.beaconice.cn/math/">
-      <xsd:element name="add">
-        <xsd:complexType>
-          <xsd:sequence>
-          	<xsd:element name="x" type="xsd:float" />
-          	<xsd:element name="y" type="xsd:float"></xsd:element>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="addResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="out" type="xsd:float" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="sub">
-      	<xsd:complexType>
-      		<xsd:sequence>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.beaconice.cn/math/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="math"
+	targetNamespace="http://www.beaconice.cn/math/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.beaconice.cn/math/">
+			<xsd:element name="add">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="x" type="xsd:float" />
+						<xsd:element name="y" type="xsd:float"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="xsd:float" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="sub">
+				<xsd:complexType>
+					<xsd:sequence>
 
-      			<xsd:element name="x" type="xsd:float"></xsd:element>
-      			<xsd:element name="y" type="xsd:float"></xsd:element>
-      		</xsd:sequence>
-      	</xsd:complexType>
-      </xsd:element>
-      <xsd:element name="subResponse">
-      	<xsd:complexType>
-      		<xsd:sequence>
+						<xsd:element name="x" type="xsd:float"></xsd:element>
+						<xsd:element name="y" type="xsd:float"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="subResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="xsd:float"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		
+			<xsd:complexType name="objType">
+				<xsd:sequence>                    <xsd:element name="errorMessage" type="xsd:string"></xsd:element>
+                    <xsd:element name="errorCode" type="xsd:int"></xsd:element>
+					<xsd:element name="result" type="xsd:string"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="len">
+				<xsd:complexType>
+					<xsd:sequence>
 
-      			<xsd:element name="out" type="xsd:float"></xsd:element>
-      		</xsd:sequence>
-      	</xsd:complexType>
-      </xsd:element>
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="addRequest">
-    <wsdl:part element="tns:add" name="parameters"/>
-  </wsdl:message>
-  <wsdl:message name="addResponse">
-    <wsdl:part element="tns:addResponse" name="parameters"/>
-  </wsdl:message>
-  <wsdl:message name="subRequest">
-  	<wsdl:part name="parameters" element="tns:sub"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="subResponse">
-  	<wsdl:part name="parameters" element="tns:subResponse"></wsdl:part>
-  </wsdl:message>
-  <wsdl:portType name="math">
-    <wsdl:operation name="add">
-      <wsdl:input message="tns:addRequest"/>
-      <wsdl:output message="tns:addResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="sub">
-    	<wsdl:input message="tns:subRequest"></wsdl:input>
-    	<wsdl:output message="tns:subResponse"></wsdl:output>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="BMath" type="tns:math">
-  	<soap:binding style="document"
-  		transport="http://schemas.xmlsoap.org/soap/http" />
-  	<wsdl:operation name="add">
-  		<soap:operation soapAction="http://www.beaconice.cn/math/add" />
-  		<wsdl:input>
-  			<soap:body use="literal" />
-  		</wsdl:input>
-  		<wsdl:output>
-  			<soap:body use="literal" />
-  		</wsdl:output>
-  	</wsdl:operation>
-  	<wsdl:operation name="sub">
-  		<soap:operation soapAction="http://www.beaconice.cn/math/sub" />
-  		<wsdl:input>
-  			<soap:body use="literal" />
-  		</wsdl:input>
-  		<wsdl:output>
-  			<soap:body use="literal" />
-  		</wsdl:output>
-  	</wsdl:operation>
-  </wsdl:binding>
-  
-  <wsdl:service name="math">
-    <wsdl:port binding="tns:BMath" name="SMath">
-      <soap:address location="http://10.10.38.80:7777/mathWS"/>
-    </wsdl:port>
-  </wsdl:service>
+						<xsd:element name="in" type="xsd:string" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="lenResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="out" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obj">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="in" type="xsd:string"></xsd:element>
+						
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="objResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="hd" type="tns:objType"></xsd:element>
+						<xsd:element name="ct"
+							type="xsd:string">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		
+        
+			<xsd:element name="ars">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="in" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="arsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="out" type="xsd:string" maxOccurs="unbounded"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="addRequest">
+		<wsdl:part element="tns:add" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="addResponse">
+		<wsdl:part element="tns:addResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="subRequest">
+		<wsdl:part name="parameters" element="tns:sub"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="subResponse">
+		<wsdl:part name="parameters" element="tns:subResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="lenRequest">
+		<wsdl:part name="parameters" element="tns:len"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="lenResponse">
+		<wsdl:part name="parameters" element="tns:lenResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="objRequest">
+		<wsdl:part name="parameters" element="tns:obj"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="objResponse">
+		<wsdl:part name="parameters" element="tns:objResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="arsRequest">
+		<wsdl:part name="parameters" element="tns:ars"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="arsResponse">
+		<wsdl:part name="parameters" element="tns:arsResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="math">
+		<wsdl:operation name="add">
+			<wsdl:input message="tns:addRequest" />
+			<wsdl:output message="tns:addResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="sub">
+			<wsdl:input message="tns:subRequest"></wsdl:input>
+			<wsdl:output message="tns:subResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="len">
+			<wsdl:input message="tns:lenRequest"></wsdl:input>
+			<wsdl:output message="tns:lenResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="obj">
+			<wsdl:input message="tns:objRequest"></wsdl:input>
+			<wsdl:output message="tns:objResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ars">
+			<wsdl:input message="tns:arsRequest"></wsdl:input>
+			<wsdl:output message="tns:arsResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BMath" type="tns:math">
+
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="add">
+
+			<soap:operation
+				soapAction="http://www.beaconice.cn/math/add" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="sub">
+
+			<soap:operation
+				soapAction="http://www.beaconice.cn/math/sub" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="len">
+
+			<soap:operation
+				soapAction="http://www.beaconice.cn/math/len" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="obj">
+
+			<soap:operation
+				soapAction="http://www.beaconice.cn/math/obj" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ars">
+			<soap:operation
+				soapAction="http://www.beaconice.cn/math/ars" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="math">
+		<wsdl:port binding="tns:BMath" name="SMath">
+			<soap:address location="http://10.10.38.80:7777/mathWS" />
+		</wsdl:port>
+	</wsdl:service>
 </wsdl:definitions>

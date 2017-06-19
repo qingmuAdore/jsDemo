@@ -14,6 +14,34 @@ var MathService = {
                 console.log(args);
                 return Number(args.x) - Number(args.y);
             },
+            /*
+                response result: {
+                    hd:objType, //objType{errorCode,errorMessage,result}
+                    ct:string ,
+                } 
+             */
+            obj: function (args, cb) {
+                console.log(args);
+                return {
+                    hd: {
+                        errorCode: 200,
+                        errorMessage: 'success',
+                        result: 'head'
+                    },
+                    ct: 'content'
+                }
+            },
+            //请求参数 支持数组
+            len: function (args, cb) {
+                console.log(args);
+                return args.in.length;
+            },
+            //响应 支持数组
+            ars: function (args, cb) {
+                console.log(args);
+                return ['one', 'two', 'three'];
+            }
+
         }
     }
 };
