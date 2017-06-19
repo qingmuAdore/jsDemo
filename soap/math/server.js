@@ -41,7 +41,6 @@ var MathService = {
                 console.log(args);
                 return ['one', 'two', 'three'];
             }
-
         }
     }
 };

@@ -85,7 +85,7 @@ async.waterfall([
             text: "content 07",
             author: "pauly",
             status: "active"
-        }, , {
+        }, {
             text: "content 08",
             author: "pauly",
             status: "active"
