@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var BaseSchema = require('./base.js');
 
-var GoodsSchema = new mongoose.Schema({
+var GoodsSchema = new BaseSchema({
+    _id: Number,
     name: String,
     price: Number,
+    type: String,
     location: {
         type: [Number],
         index: {

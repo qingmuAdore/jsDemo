@@ -25,7 +25,7 @@ async.waterfall([
         user.create(doc, cb);
     },
     function (arg, cb) {
-        user.findOne({ name: doc.name }, cb);
+        user.findItem(doc.name, cb);
     },
     function (arg, cb) {
         console.log(arg);
@@ -33,6 +33,9 @@ async.waterfall([
     },
     function (arg, cb) {
         console.log(arg);
+        arg.remove(cb);
+    },
+    function (arg, cb) {
         user.remove({}, cb);
     }
 ], function (err, res) {

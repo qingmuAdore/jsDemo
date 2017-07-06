@@ -23,6 +23,4 @@ var location = LocationSchema.statics;
 location.getQuery = function (tag_id) {
     return { tag_id: tag_id };
 }
-
-
 module.exports = mongoose.model('Location', LocationSchema, 'location');

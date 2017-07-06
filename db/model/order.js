@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var BaseSchema = require('./base.js');
 
-var SaleSchema = new BaseSchema({
+var OrderSchema = new BaseSchema({
     _id: Number,
     item: String,
     price: Number,
     quantity: Number,
-    date: Date,
+    specs: [String],
+    type: String,
 });
 
-module.exports = mongoose.model('Sale', SaleSchema, 'sale');
+module.exports = mongoose.model('Order', OrderSchema, 'order');

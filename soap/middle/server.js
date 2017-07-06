@@ -4,7 +4,7 @@ var express = require('express');
 
 var app = new express();
 
-app.use('/mathWS', soap.soap({
+app.route('/mathWS').post(soap.soap({
     services: {
         math: {
             SMath: {
@@ -21,6 +21,24 @@ app.use('/mathWS', soap.soap({
     },
     wsdl: fs.readFileSync(__dirname + '/math.wsdl', 'utf8')
 }));
+
+// app.use('/mathWS', soap.soap({
+//     services: {
+//         math: {
+//             SMath: {
+//                 add: function (args, cb, headers, req) {
+//                     console.log(args);
+//                     return Number(args.x) + Number(args.y);
+//                 },
+//                 sub: function (args, cb, headers, req) {
+//                     console.log(args);
+//                     return Number(args.x) - Number(args.y);
+//                 },
+//             }
+//         }
+//     },
+//     wsdl: fs.readFileSync(__dirname + '/math.wsdl', 'utf8')
+// }));
 
 app.use('/flightlyWS', soap.soap({
     services: {
