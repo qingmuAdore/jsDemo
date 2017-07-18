@@ -8,6 +8,7 @@ var OrderSchema = new BaseSchema({
     quantity: Number,
     specs: [String],
     type: String,
+    goods: { name: String }
 });
 
 module.exports = mongoose.model('Order', OrderSchema, 'order');

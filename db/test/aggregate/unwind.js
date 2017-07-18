@@ -23,13 +23,13 @@ function exit() {
             award.removeAll(cb);
         },
     ], function (err) {
-        db.closeDB();
+        db.close();
     });
 }
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         var doc = [{

@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         var docs = [{
@@ -28,5 +28,5 @@ async.waterfall([
         user.find({}).remove(cb);
     }
 ], function (err, res) {
-    db.closeDB();
+    db.close();
 });

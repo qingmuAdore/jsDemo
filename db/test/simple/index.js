@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         var doc = {
@@ -17,5 +17,5 @@ async.waterfall([
     },
 ], function (err, res) {
     console.log(res);
-    db.closeDB();
+    db.close();
 });

@@ -47,13 +47,13 @@ function exit() {
             place.removeAll(cb);
         }
     ], function (err, res) {
-        db.closeDB();
+        db.close();
     })
 }
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         place.create(data, cb);
@@ -94,5 +94,5 @@ async.waterfall([
     console.log(err);
     console.log(res);
     exit();
-    // db.closeDB();
+    // db.close();
 })

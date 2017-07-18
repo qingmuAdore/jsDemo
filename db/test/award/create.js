@@ -5,7 +5,7 @@ var award = require('../../model/award.js');
 
 async.waterfall([
     function(cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function(arg, cb) {
         var doc = {
@@ -23,5 +23,5 @@ async.waterfall([
         award.remove({}, cb);
     }
 ], function(err, res) {
-    db.closeDB();
+    db.close();
 });

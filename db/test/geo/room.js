@@ -46,14 +46,14 @@ function exit() {
             room.remove({}, cb);
         }
     ], function (err, results) {
-        db.closeDB();
+        db.close();
     });
 }
 
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         room.add(docs, cb);
@@ -76,5 +76,5 @@ async.waterfall([
     console.log(err);
     console.log(res);
     exit();
-    // db.closeDB();
+    // db.close();
 })

@@ -43,7 +43,7 @@ function removeAll(cb) {
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         var doc = {
@@ -145,5 +145,5 @@ async.waterfall([
         removeAll(cb);
     }
 ], function (err, res) {
-    db.closeDB();
+    db.close();
 });

@@ -10,7 +10,7 @@ var user = require('../../model/user.js');
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         var data = [{
@@ -44,5 +44,5 @@ async.waterfall([
         user.remove({}, cb);
     }
 ], function (err, res) {
-    db.closeDB();
+    db.close();
 });

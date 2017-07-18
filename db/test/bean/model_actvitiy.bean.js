@@ -28,7 +28,7 @@ var activityDoc = {
 
 async.waterfall([
     function(cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function(arg, cb) {
         award.add(awardDoc, cb);
@@ -43,5 +43,5 @@ async.waterfall([
     }
 ], function(err, res) {
     console.log(res);
-    db.closeDB();
+    db.close();
 });

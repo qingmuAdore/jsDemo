@@ -17,7 +17,7 @@ function exit() {
             location.removeAll(cb);
         },
     ], function (err) {
-        db.closeDB();
+        db.close();
     });
 }
 
@@ -41,7 +41,7 @@ function generateDocs(len) {
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         location.add(generateDocs(200), cb);

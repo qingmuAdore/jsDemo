@@ -16,7 +16,7 @@ var doc = {
 
 async.waterfall([
     function(cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function(arg, cb) {
         device.add(doc, cb);
@@ -32,5 +32,5 @@ async.waterfall([
         device.remove({}, cb);
     }
 ], function(err, res) {
-    db.closeDB();
+    db.close();
 });

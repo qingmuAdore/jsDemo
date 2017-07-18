@@ -19,7 +19,7 @@ var doc = {
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         user.create(doc, cb);
@@ -39,5 +39,5 @@ async.waterfall([
         user.remove({}, cb);
     }
 ], function (err, res) {
-    db.closeDB();
+    db.close();
 });

@@ -16,7 +16,7 @@ var activity = require('../../model/activity.js');
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         async.parallel([
@@ -57,5 +57,5 @@ async.waterfall([
     },
 ], function (err, res) {
     console.log(res);
-    db.closeDB();
+    db.close();
 });

@@ -47,13 +47,13 @@ function exit() {
             inventory.removeAll(cb);
         },
     ], function (err) {
-        db.closeDB();
+        db.close();
     });
 }
 
 async.waterfall([
     function (cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function (arg, cb) {
         inventory.create(docs, cb);

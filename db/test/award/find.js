@@ -13,7 +13,7 @@ var doc = {
 
 async.waterfall([
     function(cb) {
-        db.openDB(cb);
+        db.open(cb);
     },
     function(arg, cb) {
         award.add(doc, cb);
@@ -27,5 +27,5 @@ async.waterfall([
         award.remove({}, cb);
     }
 ], function(err, res) {
-    db.closeDB();
+    db.close();
 });
