@@ -10,7 +10,7 @@
             var formData = new FormData($("#files")[0]);
             formData.append("username", "Groucho");
             $.ajax({
-                url: '/upload/singleUpload',
+                url: '/encode/singleUpload',
                 type: 'POST',
                 data: formData,
                 cache: false,
@@ -28,7 +28,7 @@
         function majax() {
             var formData = new FormData($("#mfiles")[0]);
             $.ajax({
-                url: '/upload/mulUpload',
+                url: '/encode/mulUpload',
                 type: 'POST',
                 data: formData,
                 cache: false,
