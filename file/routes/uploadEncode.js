@@ -50,10 +50,11 @@ var singleDeal = upload.single('avatar');
 router.post('/singleUpload', function (req, res) {
     singleDeal(req, res, function (err) {
         var buffer = req.file.buffer;
+        if(!buffer) return res.send('未上传文件');
         var str = crypto.createHash('md5').update(buffer).digest('hex'); 
         console.log(str);
-        fs.writeFileSync(__dirname + '/../public/files/' + req.file.originalname,buffer);
-        console.log(req.body);
+        var len = fs.writeFileSync(__dirname + '/../public/files/' + req.file.originalname,buffer);
+        if(len == -1) return res.send('文件写入出错');
         if (err) return res.send({ err: err });
         res.send('success');
     })
@@ -62,7 +63,5 @@ router.post('/singleUpload', function (req, res) {
 //多附件上传  
 //注意上传界面中的 <input type="file" name="photos"/>中的name必须是下面代码中指定的名 
 router.post('/mulUpload', upload.array('photos', 12), multiLoad);
-
-
 
 module.exports = router;

@@ -1,8 +1,11 @@
 var mqtt = require('mqtt');
-var config = require('./config.js');
+var bluebird = require('bluebird');
+var config = require('../bin/config.js');
 
 var client = mqtt.connect(config);
+bluebird.promisifyAll(client);
 var TAG = 'MQTT';
+
 
 client.on('message', function (topic, message) {
     // message is Buffer
@@ -26,13 +29,12 @@ client.on('offline', function () {
     console.log(TAG + ' offline');
 });
 
-client.on('connect', function () {
-    client.publish('/device/test', 'hello world', function (err, res) {
-        console.log(err);
-        console.log(res);
-    });
+client.on('connect', async function () {
+    // client.publish('/device/test', 'hello world', function (err, res) {
+    //     console.log(err);
+    //     console.log(res);
+    // });
 
-    client.subscribe('/device/sub');
+    var res = await client.publishAsync('/device/test', 'hello world');
+    console.log(res);
 });
-
-
