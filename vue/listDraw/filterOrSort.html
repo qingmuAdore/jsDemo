@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <title>show arr</title>
+    <script src="../js/vue.js"></script>
+
+    <script>
+        /**
+         * 使用 Object.assign(this.userProfile,{**})
+         *    this.userProfile = Object.assign({},this.userProfile,{**}); 
+         * 语法上而言,没什么差异,为何Vue.js 效果不一致
+         */
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="n in evenNumbers">{{ n }}</li>
+        </ul>
+
+        <ul>
+            <li v-for="n in even(numbers)">{{ n }}</li>
+        </ul>
+    </div>
+
+
+</body>
+
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            numbers: [1, 2, 3, 4, 5]
+        },
+        computed: {
+            evenNumbers: function () {
+                return this.numbers.filter(function (number) {
+                    return number % 2 === 0
+                })
+            }
+        },
+        methods: {
+            even: function (numbers) {
+                return numbers.filter(function (number) {
+                    return number % 2 !== 0
+                })
+            }
+
+        }
+    });
+
+</script>
+
+</html>

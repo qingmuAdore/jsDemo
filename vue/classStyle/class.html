@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>class</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .activeRed {
+            background-color: red
+        }
+
+        .activeBlue {
+            background-color: blue
+        }
+
+        .activeGreen {
+            background-color: green
+        }
+
+        .activeYellow {
+            background-color: yellow
+        }
+
+        .static {
+            height: 200px;
+        }
+    </style>
+
+    <script>
+        Vue.component('my-component', {
+            template: '<p class="foo bar">Hi</p>'
+        });
+    </script>
+</head>
+
+<body>
+    <div id="app1" class="static" v-bind:class="{ activeRed: isActive }"></div>
+    <div id="app2" class="static" v-bind:class="{ activeBlue: isActive ,'text-danger':hasError}"></div>
+    <div id="app3" class="static" v-bind:class="classObject"></div>
+    <div id="app4" class="static" v-bind:class="[activeClass,errorClass]"></div>
+    <my-component id="app5" v-bind:class="{ activeYellow: isActive }"></my-component>
+</body>
+
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            isActive: true
+        },
+    });
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            isActive: true,
+            hasError: false
+        },
+    });
+
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            classObject: {
+                activeGreen: true,
+                'text-danger': false
+            }
+        },
+    });
+
+    var app4 = new Vue({
+        el: '#app4',
+        data: {
+            activeClass: 'activeRed',
+            errorClass: 'text-danger'
+        },
+    });
+
+    var app5 = new Vue({
+        el: '#app5',
+        data: {
+            isActive: true
+        },
+    });
+
+</script>
+
+</html>

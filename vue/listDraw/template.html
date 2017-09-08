@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>show arr</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <ul>
+            <template v-for="item in arr">
+                <li>{{ item }}</li>
+                <li class="divider">--------------------</li>
+            </template>
+        </ul>
+    </div>
+
+
+</body>
+
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            arr: ['red', 'blue', 'green', 'yellow']
+        },
+    });
+
+</script>
+
+</html>

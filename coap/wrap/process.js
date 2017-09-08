@@ -19,6 +19,7 @@ var beacon = require('./lib/modules/router/router')();
 var app = new CoAP();
 
 app.use(async function (ctx, next) {
+    console.log(ctx.path);
     await next();
 });
 
@@ -26,8 +27,6 @@ user.post('/register', async function (ctx) {
     ctx.status = '2.01';
     ctx.body = 'URL /register ';
 });
-
-
 
 beacon.post('/', async function (ctx) {
     ctx.status = '2.01';

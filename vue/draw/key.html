@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>condition</title>
+    <script src="../js/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="username-input">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key="email-input">
+        </template>
+        </p>
+        <button v-on:click="changeType(loginType)">Toggle login type</button>
+    </div>
+</body>
+
+
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            loginType: 'username'
+        },
+        methods: {
+            changeType: function (type) {
+                this.loginType = (type === 'username') ? 'email' : 'username';
+            }
+        }
+    });
+</script>
+
+</html>

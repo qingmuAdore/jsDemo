@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>condition</title>
+    <script src="../js/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <h1 v-if="ok">Yes</h1>
+        <!-- <h1 v-else>No</h1> -->
+        <template v-else>
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+</body>
+
+
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            ok: true
+        },
+    });
+
+</script>
+
+</html>

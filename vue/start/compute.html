@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>compute</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="example">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        <p>Method message:"{{methodMessage()}}"</p>
+    </div>
+</body>
+
+
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello'
+        },
+        computed: {
+            // a computed getter
+            reversedMessage: function () {
+                // `this` points to the vm instance
+                return this.message.split('').reverse().join('')
+            }
+        },
+        methods: {
+            methodMessage: function () {
+                return 'method_' + this.message;
+            }
+        },
+
+
+    });
+
+</script>
+
+</html>

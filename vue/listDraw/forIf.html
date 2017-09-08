@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>show arr</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <ul>
+            <li v-for="ele in arr" v-if="ele != 'red'">
+                {{ele}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            arr: ['red', 'blue', 'green', 'yellow']
+        },
+    });
+
+</script>
+
+</html>

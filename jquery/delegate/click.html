@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Click</title>
+    <script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //事件多次绑定,将多次执行
+            for (var i = 0; i < 3; i++) {
+                $('#btn').on('click', function () {
+                    console.log("Click"); //触发三次
+                }); 
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <button id='btn'>点击</button>
+</body>
+<script>
+
+</script>
+
+</html>

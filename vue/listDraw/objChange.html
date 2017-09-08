@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <title>show arr</title>
+    <script src="../js/vue.js"></script>
+
+    <script>
+        /**
+         * 使用 Object.assign(this.userProfile,{**})
+         *    this.userProfile = Object.assign({},this.userProfile,{**}); 
+         * 语法上而言,没什么差异,为何Vue.js 效果不一致
+         */
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(value, key) in userProfile">
+                {{key}}:{{value}}
+            </li>
+        </ul>
+
+        <button v-on:click="addAgeGlobal()">addAgeGlobal</button>
+        <button v-on:click="addAgeThis()">addAgeThis</button>
+        <p></p>
+        <button v-on:click="assignProfile()">assignProfile</button>
+    </div>
+
+
+</body>
+
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            userProfile: {
+                name: 'Anika',
+            }
+        },
+        methods: {
+            addAgeGlobal: function () {
+                Vue.set(this.userProfile, 'age', 27);
+            },
+            addAgeThis: function () {
+                this.$set(this.userProfile, 'age', 28);
+            },
+            assignProfile: function () {
+                // Object.assign(this.userProfile, {
+                //     age: 27,
+                //     favoriteColor: 'Vue Green'
+                // })
+                this.userProfile = Object.assign({}, this.userProfile, {
+                    age: 27,
+                    favoriteColor: 'Vue Green'
+                })
+            }
+        }
+    });
+
+</script>
+
+</html>

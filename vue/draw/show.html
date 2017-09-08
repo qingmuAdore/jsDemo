@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>show</title>
+    <script src="../js/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <h1 v-show="ok">Hello!</h1>
+    </div>
+</body>
+
+
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            ok: true
+        },
+    });
+
+</script>
+
+</html>

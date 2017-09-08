@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>form base</title>
+    <script src="../js/vue.js">
+        // $event 原生DOM事件
+    </script>
+</head>
+
+<body>
+    <h3>#文本</h3>
+    <div id='app1'>
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+    </div>
+    <h3>#多行文本</h3>
+    <div id='app2'>
+        <span>Multiline message is:</span>
+        <p style="white-space: pre-line">{{ message }}</p>
+        <br>
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    </div>
+    <h3>#复选框</h3>
+    <div id='app3'>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+    <h3>#多复选框</h3>
+    <div id='app4'>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+    <h3>#单选按钮</h3>
+    <div id='app5'>
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div>
+    <h3>#单选列表</h3>
+    <div id='app6'>
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+    <h3>#多选列表</h3>
+    <div id='app7'>
+        <select v-model="selected" multiple style="width: 50px">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br>
+        <span>Selected: {{ selected }}</span>
+    </div>
+    <h3>#动态列表</h3>
+    <div id='app8'>
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+</body>
+
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            message: ''
+        }
+    });
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            message: ''
+        }
+    });
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            checked: false
+        }
+    });
+    var app4 = new Vue({
+        el: '#app4',
+        data: {
+            checkedNames: []
+        }
+    });
+    var app5 = new Vue({
+        el: '#app5',
+        data: {
+            picked: ''
+        }
+    });
+    var app6 = new Vue({
+        el: '#app6',
+        data: {
+            selected: ''
+        }
+    });
+    var app7 = new Vue({
+        el: '#app7',
+        data: {
+            selected: []
+        }
+    });
+    var app8 = new Vue({
+        el: '#app8',
+        data: {
+            selected: 'A',
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+            ]
+        }
+    })
+
+</script>
+
+</html>

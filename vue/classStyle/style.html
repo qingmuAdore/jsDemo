@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>style</title>
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: '<p class="foo bar">Hi</p>'
+        });
+    </script>
+</head>
+
+<body>
+    <div id='app1' v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">app1</div>
+    <div id='app2' v-bind:style="styleObject">app2</div>
+    <div id='app3' v-bind:style="[baseStyles, overridingStyles]">app3</div>
+    <div id='app4' v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">app4</div>
+</body>
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            activeColor: 'red',
+            fontSize: 30
+        }
+    });
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            styleObject: {
+                color: 'blue',
+                fontSize: '30px'
+            }
+
+        }
+    });
+
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            baseStyles: {
+                color: 'green',
+            },
+            overridingStyles: {
+                fontSize: '30px'
+            }
+        }
+    });
+
+</script>
+
+</html>
