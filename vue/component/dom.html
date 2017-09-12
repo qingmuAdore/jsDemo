@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM</title>
+    <script src="../public/js/vue.js">
+        // https://cn.vuejs.org/v2/guide/components.html#DOM-模板解析说明
+        //当使用 DOM 作为模板时 (例如，将 el 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 
+        //后才能获取模板内容。尤其像这些元素 <ul>，<ol>，<table>，<select> 限制了能被它包裹的元素，而一些像 <option> 这样的元素只能出现在某些其它元素内部
+    </script>
+    <script>
+        // 注册 组件
+        Vue.component('my-row', {
+            template: '<tr>A Row!</tr>'
+        });
+    </script>
+</head>
+
+<body>
+    <h3>#全局注册使用</h3>
+    <div id='app1'>
+        <table>
+            <tr is="my-row"></tr>
+        </table>
+
+
+        <table>
+            <my-row></my-row>
+        </table>
+
+    </div>
+
+</body>
+
+<script>
+    //创建根示例
+    var app1 = new Vue({
+        el: '#app1',
+    });
+/*
+可以渲染:why?
+
+<table>
+    <my-row></my-row>
+</table>        
+*/
+</script>
+
+</html>

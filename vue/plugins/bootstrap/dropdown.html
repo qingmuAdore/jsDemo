@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>show obj</title>
+    <link rel="stylesheet" href="../../public/css/bootstrap.css">
+    <script src="../../public/js/vue.js"></script>
+    <script src="../../public/js/jquery.js"></script>
+    <script src="../../public/js/bootstrap.js"></script>
+
+</head>
+
+<body>
+      
+    <div class="btn-group">
+        <!-- <button class="btn btn-mini">Action</button>
+        <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button> -->
+        <select class="form-control">
+                <option v-for="action in actions">{{action}}</option>
+        </select>
+    </div>
+</body>
+
+
+<script>
+    var btnGroup = new Vue({
+        el: '.btn-group',
+        data: {
+            actions: ['Large action', 'Small action', 'Unkown action']
+        },
+    });
+
+</script>
+
+</html>

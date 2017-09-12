@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>componet register</title>
+    <script src="../public/js/vue.js">
+
+    </script>
+    <script>
+        // 注册 组件
+        Vue.component('my-component', {
+            template: '<p>A Custome component!</p>'
+        });
+    </script>
+</head>
+
+<body>
+    <h3>#全局注册使用</h3>
+    <div id='app1'>
+        <my-component></my-component>
+    </div>
+
+    <h3>#局部注册使用</h3>
+    <div id='app2'>
+        <my-component></my-component>
+    </div>
+</body>
+
+<script>
+    //创建根示例
+    var app1 = new Vue({
+        el: '#app1',
+    });
+
+    //创建根示例 
+    var app2 = new Vue({
+        el: '#app2',
+        //局部优先级 > 全局优先级
+        components: {
+            'my-component': {
+                template: '<div>A Part custom component!</div>'
+            }
+        }
+    });
+
+</script>
+
+</html>

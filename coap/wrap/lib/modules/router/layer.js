@@ -24,19 +24,19 @@ function Layer(path, methods, middleware, opts) {
   this.paramNames = [];
   this.stack = Array.isArray(middleware) ? middleware : [middleware];
 
-  methods.forEach(function(method) {
+  methods.forEach(function (method) {
     var l = this.methods.push(method.toUpperCase());
-    if (this.methods[l-1] === 'GET') {
+    if (this.methods[l - 1] === 'GET') {
       this.methods.unshift('HEAD');
     }
   }, this);
 
   // ensure middleware is a function
-  this.stack.forEach(function(fn) {
+  this.stack.forEach(function (fn) {
     var type = (typeof fn);
     if (type !== 'function') {
       throw new Error(
-        methods.toString() + " `" + (this.opts.name || path) +"`: `middleware` "
+        methods.toString() + " `" + (this.opts.name || path) + "`: `middleware` "
         + "must be a function, not `" + type + "`"
       );
     }
@@ -73,7 +73,7 @@ Layer.prototype.match = function (path) {
 Layer.prototype.params = function (path, captures, existingParams) {
   var params = existingParams || {};
 
-  for (var len = captures.length, i=0; i<len; i++) {
+  for (var len = captures.length, i = 0; i < len; i++) {
     if (this.paramNames[i]) {
       var c = captures[i];
       params[this.paramNames[i].name] = c ? safeDecodeURIComponent(c) : c;
@@ -125,7 +125,7 @@ Layer.prototype.url = function (params) {
   if (args instanceof Array) {
     var tokens = pathToRegExp.parse(url);
     var replace = {};
-    for (var len = tokens.length, i=0, j=0; i<len; i++) {
+    for (var len = tokens.length, i = 0, j = 0; i < len; i++) {
       if (tokens[i].name) replace[tokens[i].name] = args[j++];
     }
     return toPath(replace);
@@ -197,7 +197,8 @@ Layer.prototype.param = function (param, fn) {
 
 Layer.prototype.setPrefix = function (prefix) {
   if (this.path) {
-    this.path = prefix + this.path;
+    // this.path = prefix + this.path;
+    this.path = (prefix + this.path).replace(/\/+/g, "/");  //去掉 连续 '/' 替换为单一 '/'
     this.paramNames = [];
     this.regexp = pathToRegExp(this.path, this.paramNames, this.opts);
   }

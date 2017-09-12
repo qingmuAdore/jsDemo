@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>show arr</title>
+    <script src="../public/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <table>
+            <tr>
+                <td>id</td>
+                <td>姓名</td>
+                <td>手机号</td>
+            </tr>
+            <tr v-for="student in students">
+                <td v-for="col in columns">
+                    {{student[col]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            columns: ['id', 'name', 'tel'],
+            students: [{
+                id: 1, name: 'pauly1', tel: '1234-01'
+            }, {
+                id: 2, name: 'pauly2', tel: '1234-02'
+            }, {
+                id: 3, name: 'pauly3', tel: '1234-03'
+            }]
+        },
+    });
+
+</script>
+
+</html>

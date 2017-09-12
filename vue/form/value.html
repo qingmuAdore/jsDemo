@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>form value</title>
+    <script src="../public/js/vue.js">
+        // $event 原生DOM事件
+    </script>
+</head>
+
+<body>
+    <h3>#绑定value</h3>
+    <div id='app1'>
+        <input type="radio" v-model="picked" value="a">
+        <br>
+        <!-- `toggle` 为 true 或 false -->
+        <input type="checkbox" v-model="toggle">
+        <br>
+        <!-- 当选中时，`selected` 为字符串 "abc" -->
+        <select v-model="selected">
+            <option value="abc">ABC</option>
+        </select>
+        <br>
+        <p>Picked: {{ picked }}</p>
+        <p>Toggle: {{ toggle }}</p>
+        <p>Selected: {{ selected }}</p>
+    </div>
+    <h3>#复选框</h3>
+    <div id='app2'>
+        <input type="checkbox" v-model="toggle">
+        <br>
+        <input type="checkbox" checked='checked' v-model="toggleValue" v-bind:true-value="a" v-bind:false-value="b">
+        <br>
+        <p>Toggle: {{ toggle }}</p>
+        <p>ToggleValue: {{ toggleValue }}</p>
+    </div>
+    <h3>#选择列表设置</h3>
+    <div id='app3'>
+        <select v-model="selected">
+            <!-- 内联对象字面量 -->
+            <option v-bind:value="{ number: 123 }">123</option>
+        </select>
+    </div>
+</body>
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            picked: '',
+            toggle: '',
+            selected: '',
+        }
+    });
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            a: 'AAA',
+            b: 'BBB',
+            toggle: '',
+            toggleValue: '',
+        }
+    });
+
+
+
+</script>
+
+</html>
