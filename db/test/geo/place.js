@@ -27,7 +27,7 @@ var data = [{
         location: {
             coordinates: [1, 2]
         },
-        h:123,
+        h: 123,
     }
 }, {
     name: 'place3',
@@ -51,6 +51,8 @@ function exit() {
     })
 }
 
+
+
 async.waterfall([
     function (cb) {
         db.open(cb);
@@ -59,20 +61,21 @@ async.waterfall([
         place.create(data, cb);
     },
     function (arg, cb) {
+        // 为什么没作用
         var query = {
-            // location: {
-            //     $near: {
-            //         $geometry: {
-            //             type: "Point",
-            //             coordinates: [1.5, 1.5]
-            //         },
-            //         // $maxDistance: 1
-            //     }
-            // }
             location: {
-                $nearSphere: [0.5, 0.5],
-                $maxDistance: 1
+                $nearSphere: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: [0.5, 0.5],
+                    },
+                    $maxDistance: 30
+                }
             }
+            // location: {
+            //     $nearSphere: [0.5, 0.5],
+            //     $maxDistance: 1
+            // }
         };
         place.find(query, cb);
     },
@@ -95,4 +98,4 @@ async.waterfall([
     console.log(res);
     exit();
     // db.close();
-})
+});

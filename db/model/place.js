@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var BaseSchema = require('./base.js');
 
-var PlaceSchema = new Schema({
+var PlaceSchema = new BaseSchema({
     name: String,
     location: {
         coordinates: [Number],
