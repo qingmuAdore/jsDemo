@@ -61,27 +61,27 @@ async.waterfall([
                 $geoWithin: {
                     $center: [
                         [5, 5],
-                        10
+                        18
                     ]
                 }
             }
         };
         place.find(query, cb);
     },
-    function (arg, cb) {
-        console.log(arg);
-        var query = {
-            location: {
-                $geoWithin: {
-                    $centerSphere: [
-                        [5, 5],
-                        10
-                    ]
-                }
-            }
-        };
-        place.find(query, cb);
-    }
+    // function (arg, cb) {
+    //     console.log(arg);
+    //     var query = {
+    //         location: {
+    //             $geoWithin: {
+    //                 $centerSphere: [
+    //                     [5, 5],
+    //                     10
+    //                 ]
+    //             }
+    //         }
+    //     };
+    //     place.find(query, cb);
+    // }
 ], function (err, res) {
     console.log(res);
     console.log(err);

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Props</title>
+    <script src="../public/js/vue.js">
+
+    </script>
+    <script>
+        // 注册 组件
+        Vue.component('my-component', {
+            template: '<div>{{myMessage}}</div>',
+
+            // 子组件要显式地用 props 选项声明它期待获得的数据
+            props: ['myMessage']
+        });
+    </script>
+</head>
+
+<body>
+    <div id='app'>
+        <label>动态Props</label>
+        <br>
+        <input v-model="parentMsg">
+        <my-component v-bind:my-message="parentMsg"></my-component>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            parentMsg: ''
+        }
+    });
+
+</script>
+
+</html>

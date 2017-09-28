@@ -1,7 +1,8 @@
 /**
  * 地理处理
  * 
- * $center :半径访问内
+ * 该$center运营商指定了一个圆圈 $geoWithin查询。
+ * 查询返回在圆圈范围内的遗留坐标对。操作者不 传回GeoJSON的对象。
  * 
  * $center/$centerSphere
  * 不需要地理空间指数。然而，地理空间索引将提高查询性能。
@@ -42,10 +43,8 @@ function exit() {
         }
     ], function (err, res) {
         db.close();
-    })
-}
-
-
+    });
+};
 
 async.waterfall([
     function (cb) {

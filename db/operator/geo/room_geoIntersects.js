@@ -3,15 +3,10 @@
  * 
  * $geoWithin
  * 
- * 选择具有完全在指定形状内的地理空间数据的文档。确定包含时，MongoDB会将形状的边框视为形状的一部分，以浮点数的精度为准。
+ * 选择地理空间数据与指定的GeoJSON对象相交的文档 ; 即数据和指定对象的交集不是空的。
+ * 这包括数据和指定对象共享边缘的情况。
  * 
- * $geoWithin不需要地理空间指数。然而，地理空间索引将提高查询性能。
- * 无论2dsphere和二维地理空间索引支持 $geoWithin。
- * 
- * 指定的形状可以是GeoJSON 多边形 （单环或多环），GeoJSON MultiPolygon或由传统坐标对定义的形状。
- * 该$geoWithin运营商使用$geometry 运营商指定GeoJSON的对象。
- * 
- * 务必保证 传入的是区域
+ * 该$geoIntersects运营商使用$geometry 运营商指定GeoJSON的对象
  * 
  */
 var async = require('async');
@@ -69,19 +64,28 @@ async.waterfall([
         room.add(docs, cb);
     },
     function (arg, cb) {
-        console.log(arg);
+        console.log('点[1.5, 0.5]所在区域');
         var query = {
             scope: {
-                $geoWithin: {
+                $geoIntersects : {
                     $geometry: {
-                        /*******  Point 类型不可以   */
-                        // type: "Point",
-                        // coordinates: [1.5, 0.5]
-
-                        /*******  Polygon   */
+                        type: "Point",
+                        coordinates: [1.5, 0.5]
+                    }
+                }
+            }
+        };
+        room.find(query, cb);
+    },
+    function (arg, cb) {
+        console.log('三角形[[0.8,0.5],[1.5,1.5],[1.5,0.5],[0.8,0.5]] 交集');
+        var query = {
+            scope: {
+                $geoIntersects : {
+                    $geometry: {
                         type: "Polygon",
                         coordinates: [
-                            [[-0.5, -0.5], [-0.5, 1.5], [2.2, 1.5], [2.2, -0.5], [-0.5, -0.5]]
+                            [[0.8,0.5],[1.5,1.5],[1.5,0.5],[0.8,0.5]]
                         ]
                     }
                 }

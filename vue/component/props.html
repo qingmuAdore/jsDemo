@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Props</title>
+    <script src="../public/js/vue.js">
+
+    </script>
+    <script>
+        // 注册 组件
+        Vue.component('my-component', {
+            template: '<div>{{message}}</div>',
+
+            // 子组件要显式地用 props 选项声明它期待获得的数据
+            props: ['message']
+        });
+    </script>
+</head>
+
+<body>
+    <div id='app'>
+        <label># 通过属性传入数据 </label>
+        <my-component message="A Custom component"></my-component>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>show obj</title>
+    <link rel="stylesheet" href="../../public/css/bootstrap.css">
+    <script src="../../public/js/vue.js"></script>
+    <script src="../../public/js/jquery.js"></script>
+    <script src="../../public/js/bootstrap.js"></script>
+    <style>
+        .modal-mask {
+            position: fixed;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            display: table;
+            /* transition: opacity .3s ease; */
+        }
+
+        .modal-wrapper {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .modal-container {
+            width: 500px;
+            margin: 0 auto;
+            height: 400px;
+            padding: 20px 30px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+            transition: all .3s ease;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .modal-body {
+            padding: 20px 0;
+            height: 100px;
+        }
+
+        .model-footer {
+            padding-top: 120px;
+        }
+
+        .modal-default-button {
+            text-align: center;
+        }
+
+        .modal-enter {
+            opacity: 0;
+        }
+
+        .modal-leave-active {
+            opacity: 0;
+        }
+
+        .modal-enter .modal-container,
+        .modal-leave-active .modal-container {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        label {
+            width: 50px;
+        }
+
+        #name,
+        #sex,
+        #age {
+            width: 300px;
+        }
+
+        .modal-footer {
+            border: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <div><span>搜索</span><input type="text" v-model="search.key"></div>
+        <div>
+            <span>添加</span>
+            <span>姓名</span><input type="text" v-model='newPerson.name'>
+            <span>年纪</span><input type="text" v-model='newPerson.age'>
+            <span>性别</span><input type="text" v-model='newPerson.sex'>
+            <button class="btn  btn-primary" @click="add">新增</button>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>年纪</td>
+                    <td>性别</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(person,index) in people">
+                    <td>{{person.name}}</td>
+                    <td :style="person.age>30?'color:red':''">{{person.age}}</td>
+                    <td>{{person.sex}}</td>
+                    <td>
+                        <button class="btn  btn-danger" @click="del(index)">删除</button>
+                        <button class="btn  btn-primary" @click="openTagModalCheck(person)">查看</button>
+                        <button class="btn  btn-primary" @click="openTagModalUpdate(person, index)">编辑</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <modal-check v-if="showModalCheck" @close="showModalCheck = false" :my-tag-check-l="selectTagCheck"></modal-check>
+        <modal-update v-if="showModalUpdate" @close="showModalUpdate = false" @update="update()" :my-tag-update-r="selectTagUpdate"></modal-update>
+
+    </div>
+
+
+</body>
+
+<script type="text/x-template" id="modal-template-check">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+
+                    <div class="modal-header">
+                        <slot name="header">
+                            信息查看
+                        </slot>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <slot name="body">
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="name" class="form-control" v-model="myTagCheckL.name" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">年纪</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="age" class="form-control" v-model="myTagCheckL.age" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">性别</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="sex" class="form-control" v-model="myTagCheckL.sex" disabled>
+                                </div>
+                            </div>
+
+
+                        </slot>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button class="modal-default-button btn btn-primary" @click="$emit('close')">
+                           关闭
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>
+
+
+<script type="text/x-template" id="modal-template-update">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+
+
+                    <div class="modal-header">
+                        <slot name="header">
+                            信息查看
+                        </slot>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <slot name="body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="name" class="form-control" v-model="myTagUpdateR.name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">年纪</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="age" class="form-control" v-model="myTagUpdateR.age">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">性别</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="sex" class="form-control" v-model="myTagUpdateR.sex">
+                                </div>
+                            </div>
+
+
+                        </slot>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button class=" btn btn-primary" @click="$emit('update')" >提交 </button>
+                        <button class="modal-default-button btn btn-primary" @click="$emit('close')">放弃</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            showModalUpdate: false,
+            showModalCheck: false,
+            selectTagCheck: null,
+            selectTagUpdate: null,
+
+
+            search: {
+                key: ''
+            },
+            newPerson: {
+                name: '阿三',
+                sex: '男',
+                age: 50
+            },
+            people: [{
+                name: 'Jack',
+                age: 10,
+                sex: '男'
+            }, {
+                name: 'Bill',
+                age: 26,
+                sex: '男'
+            }, {
+                name: 'Tracy',
+                age: 22,
+                sex: '女'
+            }, {
+                name: 'Chris',
+                age: 36,
+                sex: '男'
+            }],
+            cache: {
+                index: null,
+                person: {},
+            },
+        },
+
+        methods: {
+            //新增
+            add: function () {
+                this.people.push(this.newPerson)
+                //避免重复添加,重置新的默认对象
+                this.newPerson = { name: '阿三', sex: '男', age: 50 };
+            },
+
+
+            //删除
+            del: function (index) {
+                //console.info(this.people)  //为数组
+                this.people.splice(index, 1);
+            },
+
+
+            //查看--打开model
+            openTagModalCheck: function (tag) {
+                //console.info(tag)
+                //打开模态框的要求
+                this.showModalCheck = true;
+                this.selectTagCheck = tag;
+            },
+
+
+            //编辑--打开model
+            openTagModalUpdate: function (tag, index) {
+                //console.info(tag)
+                //打开模态框的要求
+                this.showModalUpdate = true;
+                let cache = Object.assign({}, tag)
+
+
+                this.$set(this.cache, 'person', cache);
+                this.$set(this.cache, 'index', index);
+
+
+                this.selectTagUpdate = cache;
+            },
+
+
+            //编辑model---提交
+            update: function () {
+                console.info(111)
+                let index = this.cache.index;
+                let person = this.cache.person;
+                this.$set(this.people, index, person);
+                this.showModalUpdate = false;
+
+            }
+        },
+
+        components: {
+            'modal-check': {
+                props: ['myTagCheckL'],
+                template: '#modal-template-check'
+            },
+            'modal-update': {
+                props: ['myTagUpdateR'],
+                template: '#modal-template-update'
+            }
+        }
+    })
+
+</script>
+
+</html>

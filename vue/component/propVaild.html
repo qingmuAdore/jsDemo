@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Props</title>
+    <script src="../public/js/vue.js">
+
+    </script>
+    <script>
+        // 注册 组件
+        Vue.component('my-component', {
+            template: '<div>{{propA}}-{{propB}}-{{propC}}-{{propD}}-{{propE}}-{{propF}}</div>',
+
+            // 子组件要显式地用 props 选项声明它期待获得的数据
+            props: {
+                // 基础类型检测 (`null` 意思是任何类型都可以)
+                propA: Number,
+                // 多种类型
+                propB: [String, Number],
+                // 必传且是字符串
+                propC: {
+                    type: String,
+                    required: true
+                },
+                // 数字，有默认值
+                propD: {
+                    type: Number,
+                    default: 100
+                },
+                // 数组/对象的默认值应当由一个工厂函数返回
+                propE: {
+                    type: Object,
+                    default: function () {
+                        return { message: 'hello' }
+                    }
+                },
+                // 自定义验证函数
+                propF: {
+                    validator: function (value) {
+                        return value > 10
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id='app'>
+        <label>动态Props</label>
+        <br>
+        <my-component prop-a="abas" prop-b="aba" prop-c="prob-c"></my-component>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            parentMsg: ''
+        }
+    });
+
+</script>
+
+</html>

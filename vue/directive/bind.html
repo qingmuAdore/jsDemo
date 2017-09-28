@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>name</title>
+    <script src="../public/js/vue.js"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <a v-bind:href="url">百度</a>
+    </div>
+</body>
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            url: 'http://www.baidu.com'
+        },
+    });
+
+</script>
+
+</html>

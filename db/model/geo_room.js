@@ -11,11 +11,10 @@ var RoomSchema = new BaseSchema({
             type: String,
             default: 'Polygon'
         },
-    },
-  
+    }
 });
 
 RoomSchema.index({ "scope": '2dsphere' });
-//RoomSchema.index({ "scope.coordinates": '2dsphere' }); //Error
+// RoomSchema.index({ "scope.coordinates": '2dsphere' }); //Error
 
 module.exports = mongoose.model('Room', RoomSchema, 'room');

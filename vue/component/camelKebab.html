@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Camel Kebab</title>
+    <script src="../public/js/vue.js">
+        // HTML 特性是不区分大小写的。所以，当使用的不是字符串模板，camelCased (驼峰式) 
+    // 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名
+    </script>
+    <script>
+        // 注册 组件
+        Vue.component('child', {
+            template: '<div>{{myMessage}}</div>',
+            // 子组件要显式地用 props 选项声明它期待获得的数据
+            props: ['myMessage']
+        });
+    </script>
+</head>
+
+<body>
+    <div id='app'>
+        <label style="color:red"># myMessage 属性不被识别 html显示为 mymessage </label>
+        <child myMessage="A Custom component"></child>
+
+        <label style="color:red"># 将驼峰命名 转 短横线命名 </label>
+        <child my-message="A Custom component"></child>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+    });
+
+</script>
+
+</html>
