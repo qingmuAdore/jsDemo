@@ -1,37 +1,37 @@
 /**
  * 地理处理
  * 
- * $near :附近
- *    指定点附近的(minDistance maxDistance) 点
+ * $center :半径访问内
  * 
- * $geoWithin: 在区域
- *    点是否在指定区域
+ * $center/$centerSphere
+ * 不需要地理空间指数。然而，地理空间索引将提高查询性能。
+ * 无论2dsphere和二维地理空间索引支持 $geoWithin。
  */
 
 var async = require('async');
 var mongoose = require('mongoose');
 var db = require('../../lib/db.js');
-var place = require('../../model/place.js');
+var place = require('../../model/geo_place_2dsphere.js');
 
 var data = [{
     name: 'place1',
     location: {
-        coordinates: [1, 1]
+        coordinates: [10, 10]
     }
 }, {
     name: 'place2',
     location: {
-        coordinates: [1, 2]
+        coordinates: [10, 20]
     }
 }, {
     name: 'place3',
     location: {
-        coordinates: [2, 2]
+        coordinates: [20, 20]
     }
 }, {
     name: 'place4',
     location: {
-        coordinates: [2, 1]
+        coordinates: [20, 10]
     }
 }];
 
@@ -55,21 +55,16 @@ async.waterfall([
         place.create(data, cb);
     },
     function (arg, cb) {
-        // 为什么没作用
+        console.log('$center: 10内 radius: 10');
         var query = {
             location: {
-                $nearSphere: {
-                    $geometry: {
-                        type: "Point",
-                        coordinates: [0.5, 0.5],
-                    },
-                    $maxDistance: 30
+                $geoWithin: {
+                    $center: [
+                        [5, 5],
+                        10
+                    ]
                 }
             }
-            // location: {
-            //     $nearSphere: [0.5, 0.5],
-            //     $maxDistance: 1
-            // }
         };
         place.find(query, cb);
     },
@@ -78,18 +73,17 @@ async.waterfall([
         var query = {
             location: {
                 $geoWithin: {
-                    $geometry: {
-                        type: "Polygon",
-                        coordinates: [[[0, 0], [0, 1.5], [1.5, 1.5], [1.5, 0], [0, 0]]]
-                    }
+                    $centerSphere: [
+                        [5, 5],
+                        10
+                    ]
                 }
             }
         };
         place.find(query, cb);
     }
 ], function (err, res) {
-    console.log(err);
     console.log(res);
+    console.log(err);
     exit();
-    // db.close();
 });

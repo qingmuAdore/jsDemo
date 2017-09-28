@@ -37,9 +37,9 @@ var data = [{
 
 function exit() {
     async.parallel([
-        function (cb) {
-            place.removeAll(cb);
-        }
+        // function (cb) {
+        //     place.removeAll(cb);
+        // }
     ], function (err, res) {
         db.close();
     })
@@ -52,9 +52,9 @@ async.waterfall([
     function (arg, cb) {
         place.create(data, cb);
     },
-    function (arg, cb) {
-        place.geoNear([-73.9667, 40.78], { spherical: true }, cb);
-    }
+    // function (arg, cb) {
+    //     place.geoNear([-73.9667, 40.78], { spherical: true }, cb);
+    // }
 ], function (err, res, status) {
     console.log(err);
     console.log(res);
