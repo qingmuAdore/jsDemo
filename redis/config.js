@@ -4,8 +4,8 @@
 module.exports = {
     //普通redis
     redis: {
-        // host: 'localhost',
-        host:'10.10.38.60',
+        host: 'localhost',
+        // host:'10.10.38.60',
         port: 6379,
         db: '0'
     },
