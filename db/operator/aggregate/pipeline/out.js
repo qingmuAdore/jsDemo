@@ -1,8 +1,7 @@
 /**
- * $lookup
+ * $out
  * 
- * 表关联查询
- *  多表关联处理, 将本表指定的field与关联表field进行关联查询,匹配的文档采用指定字段(类型:数组)保存
+ * 输出到集合
  */
 var async = require('async');
 var db = require('../../../lib/db.js');

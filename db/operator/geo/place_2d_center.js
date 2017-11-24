@@ -56,6 +56,7 @@ async.waterfall([
     function (arg, cb) {
         var query = {
             location: {
+                // "location.coordinates": { //也可以
                 $geoWithin: {
                     $center: [
                         [5, 5],

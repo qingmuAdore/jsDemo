@@ -8,6 +8,7 @@ var OrderSchema = new BaseSchema({
     quantity: Number,
     specs: [String],
     type: String,
+    hasDiscount: Boolean,
     goods: { name: String }
 });
 

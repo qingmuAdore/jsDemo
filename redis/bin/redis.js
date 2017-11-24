@@ -1,6 +1,9 @@
 var redis = require('redis');
+var bluebird = require('bluebird');
 var configRedis = require('../config.js').redis;
 var client = null;
+
+
 
 exports.open = function () {
     exports.client = client = redis.createClient(configRedis);
@@ -27,5 +30,3 @@ exports.close = function () {
     if (!client) return;
     client.end(true);
 }
-
-
