@@ -4,7 +4,8 @@
 const gulp = require('gulp'),
     rev = require('gulp-rev'),
     clean = require('gulp-clean'),
-    revCollector = require('gulp-rev-collector');
+    sequence = require('run-sequence');
+revCollector = require('gulp-rev-collector');
 
 //定义css、js源文件路径,manifest导出路径等
 const paths = {
@@ -40,15 +41,17 @@ gulp.task('html', function () {
     return gulp.src([paths.commmon.manifest, paths.html.src])
         .pipe(revCollector({
             replaceReved: true, //replaceReved标识, 用来说明模板中已经被替换的文件是否还能再被替换,默认是false
-            // dirReplacements: {  //标识目录替换的集合, 因为gulp-rev创建的manifest文件不包含任何目录信息
-            //     'css': paths.css.dist,
-            //     'js': paths.js.dist,
-            //     // 'cdn/': function (manifest_value) {
-            //     //     return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
-            //     // }
-            // }
+            dirReplacements: {  //标识目录替换的集合, 因为gulp-rev创建的manifest文件不包含任何目录信息
+                // 'css': paths.css.dist,
+                // 'js': paths.js.dist,
+                // 'cdn/': function (manifest_value) {
+                //     return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
+                // }
+            }
         }))
         .pipe(gulp.dest(paths.html.dist));
 });
 
-gulp.task('default', ['clean', 'css', 'js', 'html']);
+gulp.task('default', function (done) {
+    sequence(['css', 'js'], ['html'], done);
+});
