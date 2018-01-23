@@ -1,4 +1,4 @@
-/**更名方案 静态资源文件补上hash值标识 */
+/**更名方案 静态资源文件名补上hash值标识 */
 
 //引入gulp和gulp插件
 const gulp = require('gulp'),
