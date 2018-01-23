@@ -1,0 +1,11 @@
+{
+  "name": "gulp-html-cache",
+  "version": "1.0.0",
+  "description": "html cache ",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
