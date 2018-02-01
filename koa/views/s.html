@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Indexed DB</title>
+</head>
+
+<body>
+	<input id='open' type="button" value="open db">
+	<input id='close' type="button" value="close db">
+	<input id='query' type="button" value="query">
+	<br>
+	<input id='back' type="button" value="back">
+</body>
+<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/localforage.js"></script>
+<script type="text/javascript">
+	$('#open').on('click', function () {
+		localforage.config({
+			driver: localforage.IndexedDB, // Force WebSQL; same as using setDriver()
+			name: 'myApp',
+			version: 1.0,
+			// size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+			storeName: 'myStoreName', // Should be alphanumeric, with underscores.
+			description: 'some description'
+		});
+	})
+
+	$('#close').on('click', function () {
+		db.close();
+	});
+
+	$('#query').on('click', function () {
+		localforage.getItem('username', console.log);
+	});
+
+	$('#back').on('click', function () {
+		window.history.back();
+	});
+</script>
+
+
+</html>
